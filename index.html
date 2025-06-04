@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ultralatino</title>
+
+  <!-- Fuentes y AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-fondo: #121212;
+      --color-panel: #3b0a3d; /* rosa bandera oscuro */
+      --color-texto: #f0f0f0;
+      --color-acento: #8b005d; /* rosa bandera más oscuro para acentos */
+      --color-secundario: #a3164a; /* otra tonalidad de rosa */
+      --color-boton-hover: #720041; /* hover más oscuro */
+      --sombra-boton: rgba(139, 0, 93, 0.4);
+      --color-whatsapp: #8b005d; /* mismo rosa bandera para whatsapp */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0a0a0a;
+      color: var(--color-texto);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+  position: relative;
+  background-color: #8b005d;
+  padding: 10px 20px;
+  color: white;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.center-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.right-block {
+  position: absolute;
+  right: 20px;
+}
+
+.whatsapp-number {
+  font-size: 1.2rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+header h1 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  color: white;
+  letter-spacing: 4px;
+  margin: 0;
+  user-select: none;
+}
+
+    .imagen-flotante {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      object-fit: cover;
+      user-select: none;
+    }
+
+    .imagen-panel {
+      width: 100%;
+      margin-top: 25px;
+      box-shadow: 0 0 30px rgba(139, 0, 93, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .imagen-panel:hover {
+      transform: scale(1.03);
+    }
+
+    .article-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 30px auto 0;
+  object-fit: contain;
+  max-height: 500px;
+}
+
+    .container {
+      max-width: 100%;
+      margin: 0px;
+      padding: 0 0px 0px;
+    }
+
+    article, section {
+      background-color: var(--color-panel);
+      padding: 40px 30px;
+      box-shadow: 0 30px 0px rgba(0,0,0,0.6);
+      text-align: center;
+      color: var(--color-texto);
+    }
+
+    article {
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+    h2, h3 {
+      margin-top: 0;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 1.5px;
+      user-select: none;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ddd;
+      max-width: 720px;
+      margin: 0 auto;
+      user-select: text;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px var(--color-acento);
+      outline: none;
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--color-acento);
+      color: white;
+      padding: 16px 40px;
+      margin-top: 30px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px var(--sombra-boton);
+      transition: all 0.35s ease-in-out;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .button:hover, .button:focus {
+      background-color: var(--color-boton-hover);
+      box-shadow: 0 12px 40px var(--sombra-boton);
+      transform: scale(1.08);
+      outline: none;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 200px;
+      height: 200px;
+      background-color: var(--color-whatsapp);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(139, 0, 93, 0.7);
+      z-index: 10000;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.2);
+    }
+
+.whatsapp-float img {
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  user-select: none;
+}
+
+    footer {
+      text-align: center;
+      padding: 45px 30px;
+      font-size: 0.9rem;
+      color: #777;
+      user-select: none;
+      background-color: #0a0a0a;
+      box-shadow: inset 0 1px 5px rgba(255,255,255,0.05);
+    }
+
+    .articles-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 60px;
+  }
+
+.slider {
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 1s ease;
+}
+
+.slides img {
+  width: 100vw;
+  height: 100%;
+  object-fit: contain;
+  flex-shrink: 0;
+  background-color: black; /* relleno si hay espacio vacío */
+}
+
+.whatsapp-button {
+  background-color: #25d366;
+  color: white;
+  width: 100%;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5d;
+  transform: scale(1.05);
+}
+
+.paypal-button-container {
+  justify-content: center;
+  margin-top: 40px;
+  padding: 60px;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 25px auto 80px;
+  padding: 25px 20px;
+  border-radius: 25px;
+}
+
+.faq-item {
+  background-color: #1d1d1d;
+  border: 2px solid var(--color-acento);
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.faq-question {
+  cursor: pointer;
+  padding: 25px 30px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+  background-color: #2a2a2a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.faq-question:hover {
+  background-color: #333;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 30px;
+  color: #ddd;
+  font-size: 1.1rem;
+}
+
+.faq-answer p {
+  margin: 18px 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding-bottom: 20px;
+}
+
+.whatsapp-header {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-whatsapp);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 6px;
+  box-shadow: 0 0 12px rgba(139, 0, 93, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-header:hover {
+  transform: scale(1.15);
+}
+
+.whatsapp-header img {
+  width: 28px;
+  height: 28px;
+}
+
+    @keyframes slide {
+  0%    { transform: translateX(0%); }
+  20.83% { transform: translateX(0%); }
+
+  25%   { transform: translateX(-100%); }
+  45.83% { transform: translateX(-100%); }
+
+  50%   { transform: translateX(-200%); }
+  70.83% { transform: translateX(-200%); }
+
+  75%   { transform: translateX(-300%); }
+  95.83% { transform: translateX(-300%); }
+
+  100%  { transform: translateX(0%); }
+}
+
+@media (max-width: 1024px) {
+  .articles-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .articles-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .imagen-flotante {
+        width: 60px;
+        height: 60px;
+      }
+      .button {
+        font-size: 1.1rem;
+        padding: 14px 28px;
+      }
+      article, section {
+        padding: 30px 20px;
+        margin-bottom: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="center-block">
+      <img src="WhatsApp Image 2025-06-02 at 1.45.54 PM.jpeg" alt="Logo Ultralatino" class="imagen-flotante" />
+      <h1>Ultralatino</h1>
+    </div>
+    <div class="right-block">
+      <span class="whatsapp-number">+52 1 55 8302 0985</span>
+    </div>
+  </div>
+</header>
+<a href="https://wa.me/qr/NHPDCVKJ7RGLD1" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp Icon" style="width: 100px; height: 100px;" />
+</a>
+
+  <main class="container">
+
+      <div class="slider" id="slider">
+    <div class="slides">
+        <img src="ultra.jpeg" alt="Imagen 1" />
+        <img src="f1.jpeg" alt="Imagen 2" />
+        <img src="endgame.jpeg" alt="Imagen 3" />
+        <img src="Castillo.jpeg" alt="Imagen 4" />
+      </div>
+    </div>
+
+<br><br>
+
+    <section id="app" data-aos="fade-up" data-aos-delay="300">
+      <h2>📱 Chatea con nosotros</h2>
+ <a href="https://wa.me/5215583020985" class="whatsapp-button" target="_blank" aria-label="Chatea por WhatsApp"><img src="WhatsApp Image 2025-06-03 at 10.22.39 PM.jpeg" alt="" width="50%"></a>
+      <br />
+    </section>
+
+    <br><br>
+
+    <div class="articles-columns">
+      <article data-aos="fade-up" data-aos-delay="100">
+        <h3>Bienvenidos a Ultralatino</h3>
+        <p>
+          La mejor plataforma de entretenimiento para todo el público. Series, películas, documentales, canales de TV y eventos deportivos en español, con la mejor calidad y disponibilidad.
+        </p>
+        <br><br><br><br><br>
+        <img src="$250.jpeg" alt="" class="article-image">
+        <div class="paypal-button-container"id="paypal-container-UG23MXZ73N9LC"></div>
+      </article>
+
+            <article data-aos="fade-up" data-aos-delay="200">
+        <h3>Ultralatino</h3>
+        <p>
+          La mejor plataforma de entretenimiento para todo el público. Series, películas, documentales, canales de TV y eventos deportivos en español, con la mejor calidad y disponibilidad.
+        </p>
+        <br><br><br><br><br>
+        <img src="$600.jpeg" alt="" class="article-image">
+        <div class="paypal-button-container"  id="paypal-container-QZZ9RDLBTQLFU"></div>
+      </article>
+
+      <article data-aos="fade-up" data-aos-delay="400">
+      <h3>¡Descubre el poder del entretenimiento latino con Ultralatino!</h3>
+      <p>
+      ¿Cansado de opciones limitadas? Con Ultralatino, por $250 mensuales, disfruta de todo el entretenimielatino que puedas imaginar en hasta tres dispositivos a la vez. Películas, series, documentales… ¡todo un solo lugar!  Ultralatino: Tu destino para el entretenimiento sin fin.
+      </p>
+      <img src="$1800.jpeg" alt="" class="article-image">
+      <div class="paypal-button-container"  id="paypal-container-3P7Z7ACDEA73Y"></div>
+      </article>
+    </div>
+
+    <br><br>
+
+    <section id="video" data-aos="fade-up" data-aos-delay="200">
+      <h2>Ultralatino</h2>
+      <video autoplay muted playsinline controls preload="metadata" poster="img/video-poster.jpg">
+  <source src="WhatsApp Video 2025-06-02 at 1.28.42 PM.mp4" type="video/mp4" />
+</video>
+    </section>
+<br><br><br>
+    <section id="app" data-aos="fade-up" data-aos-delay="300">
+      <h2>Descarga Nuestra App</h2>
+      <a href="http://bit.ly/ultraibo" class="button">Android</a>
+      <br />
+    </section>
+<br><br><br>
+
+<section class="faq-container" data-aos="fade-up" data-aos-delay="400">
+  <h2 style="text-align: center;">Preguntas Frecuentes</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">¿Qué incluye el servicio?</div>
+    <div class="faq-answer">
+      <p>Más de 8,500 canales en vivo, películas, series, deportes, y contenido premium. Compatible con 3 dispositivos al mismo tiempo.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">¿Cuánto cuesta?</div>
+    <div class="faq-answer">
+      <p>La promoción actual es de $250 al mes (precio regular: $350).</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">¿Cómo hago el pago?</div>
+    <div class="faq-answer">
+      <p>Puedes pagar fácilmente por PayPal o mediante transferencia. Consulta nuestra sección de pagos para más detalles.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">¿Dónde puedo usarlo?</div>
+    <div class="faq-answer">
+      <p>En Smart TV, Android, TV Box, iPhone, tablets y más. Compatible con la mayoría de dispositivos conectados a internet.</p>
+    </div>
+  </div>
+</section>
+
+<br>
+
+  </main>
+  <footer>
+    &copy; 2025 Servicios de Televisión. Todos los derechos reservados.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200,
+      once: true,
+      easing: 'ease-in-out',
+    });
+  </script>
+
+    <script 
+  src="https://www.paypal.com/sdk/js?client-id=BAADKXIuHIIpwT2acQw15o379NbR9IUidCYzTc5EUijsyDujgMMpv4Gw16mzdO8aSvPffc0cgCoOs5C12k&components=hosted-buttons&disable-funding=venmo&currency=MXN">
+</script>
+
+  <script>
+  paypal.HostedButtons({ hostedButtonId: "UG23MXZ73N9LC" }).render("#paypal-container-UG23MXZ73N9LC");
+  paypal.HostedButtons({ hostedButtonId: "QZZ9RDLBTQLFU" }).render("#paypal-container-QZZ9RDLBTQLFU");
+  paypal.HostedButtons({ hostedButtonId: "3P7Z7ACDEA73Y" }).render("#paypal-container-3P7Z7ACDEA73Y");
+</script>
+
+
+<script>
+  const slides = document.querySelector('.slides');
+  const totalSlides = slides.children.length;
+  let index = 0;
+
+  function showSlide(i) {
+    slides.style.transform = `translateX(-${i * 100}%)`;
+  }
+
+  setInterval(() => {
+    index = (index + 1) % totalSlides;
+    showSlide(index);
+  }, 6000); // 6 segundos por imagen
+
+  // Preguntas frecuentes
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+</html>
